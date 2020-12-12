@@ -15,6 +15,10 @@ function Pesawat:init()
     self.mati = false
 end
 
+function Pesawat:reset()
+    self.mati=false
+end
+
 function Pesawat:update(dt)
     if self.y < 0 then
         self.y = 0
@@ -28,7 +32,9 @@ function Pesawat:update(dt)
     if (self.y+self.height) >= VIRT_HEIGHT then
         self.y= VIRT_HEIGHT - self.height
     end
-
+    if self.mati==true then
+        gamestate='gameover'
+    end
 end
 
 function Pesawat:render()

@@ -37,6 +37,7 @@ function Musuh:tabrakan(lawan)
                 self.mati = true
                 lawan.mati= true
                 suara['ledak']:play()
+                gamestate='gameover'
                 return true
             end
         end
