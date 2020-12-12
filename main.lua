@@ -20,7 +20,7 @@ WINDOW_HEIGHT = 720
 --ukuran resolusi layar komputer virtual
 VIRT_WIDTH = 432
 VIRT_HEIGHT = 243
-KECEPATAN = 10
+KECEPATAN = 4
 
 --[[
     Runs when the game first starts up, only once; used to initialize the game.
@@ -73,6 +73,7 @@ function love.update(dt)
     pesawatku:update(dt)
     for k, musuhku in pairs (arrayMusuh) do
         musuhku:update(dt)
+        musuhku:tabrakan(pesawatku)
     end
 end
 

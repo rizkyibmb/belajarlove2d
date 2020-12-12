@@ -12,7 +12,7 @@ function Pesawat:init()
 
     self.x = VIRT_WIDTH / 2 - 100
     self.y = VIRT_HEIGHT/2
-
+    self.mati = false
 end
 
 function Pesawat:update(dt)
@@ -28,9 +28,11 @@ function Pesawat:update(dt)
     if (self.y+self.height) >= VIRT_HEIGHT then
         self.y= VIRT_HEIGHT - self.height
     end
-    
+
 end
 
 function Pesawat:render()
-    love.graphics.draw(self.image,self.x , self.y )
+    if self.mati==false then
+        love.graphics.draw(self.image,self.x , self.y )
+    end
 end

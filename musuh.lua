@@ -14,6 +14,7 @@ function Musuh:init()
     self.y = math.random (20,VIRT_HEIGHT - 20)
     -- dx = delta x, atau selisih x
     self.dx = 1
+    self.mati = false
 end
 
 function Musuh:update(dt)
@@ -21,15 +22,24 @@ function Musuh:update(dt)
         self.x = 0
         -- hilang
     end
-    
     self.dx = self.dx + dt * math.random(0,KECEPATANMUSUH)
     self.x = self.x - self.dx
+end
 
-    
+function Musuh:tabrakan(lawan)
+    if self.x < (lawan.x + lawan.width) then -- milik si musuh
+        if (self.y < (lawan.y+lawan.height)) and ((self.y+self.height)>lawan.y) then
+            --tabrakan
+            self.mati = true
+            lawan.mati= true
+        end
+    end
 end
 
 function Musuh:render()
     if self.x > 0 then
-        love.graphics.draw(self.image,self.x , self.y )
+        if self.mati==false then
+            love.graphics.draw(self.image,self.x , self.y )
+        end
     end
 end
