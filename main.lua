@@ -10,6 +10,9 @@ require 'Musuh'
 spawntimer = 1
 spawncounter = 0
 
+skor = 0
+level = 1
+
 --array atau table
 arrayMusuh = {}
 
@@ -28,6 +31,7 @@ KECEPATAN = 4
 function love.load()
 
     math.randomseed(os.time())
+
 
     pesawatku = Pesawat()
     --musuhku = Musuh()
@@ -75,6 +79,14 @@ function love.update(dt)
         musuhku:update(dt)
         musuhku:tabrakan(pesawatku)
     end
+
+    if skor < 10 then   
+        level = 1
+    elseif (skor >10) and (skor < 20)
+    then
+        level = 2
+    end
+
 end
 
 
@@ -99,8 +111,8 @@ end
 
 function tampilkantext()
     love.graphics.setColor(0,230,0,255)
-    love.graphics.print('Skor :', 20, 10) 
-    love.graphics.print('Level :', VIRT_WIDTH-60, 10) 
+    love.graphics.print('Skor : ' .. tostring(skor), 20, 10) 
+    love.graphics.print('Level : ' .. tostring(level), VIRT_WIDTH-60, 10) 
     love.graphics.print('Nama: Saya ', 20, VIRT_HEIGHT - 50 )
     love.graphics.print('NIM: 19280122 ', VIRT_WIDTH-100, VIRT_HEIGHT - 50 )
 
