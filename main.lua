@@ -4,6 +4,7 @@ push = require 'push/push'
 Class = require 'class'
 
 require 'Pesawat'
+require 'Musuh'
 
 --ukuran resolusi layar komputer aslinya
 WINDOW_WIDTH = 1280
@@ -20,6 +21,7 @@ KECEPATAN = 10
 function love.load()
 
     pesawatku = Pesawat()
+    musuhku = Musuh()
 
     push:setupScreen(VIRT_WIDTH,VIRT_HEIGHT,WINDOW_WIDTH,WINDOW_HEIGHT,{
         fullscreen = false,    
@@ -66,6 +68,7 @@ function love.draw()
 -- tampilkan teks
     tampilkantext()
     pesawatku:render()
+    musuhku:render()
     push:apply('end')
 
 end
