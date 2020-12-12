@@ -36,6 +36,7 @@ function Musuh:tabrakan(lawan)
                 --tabrakan
                 self.mati = true
                 lawan.mati= true
+                suara['ledak']:play()
                 return true
             end
         end

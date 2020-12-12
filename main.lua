@@ -31,10 +31,13 @@ KECEPATAN = 4
 function love.load()
 
     math.randomseed(os.time())
-
-
     pesawatku = Pesawat()
     --musuhku = Musuh()
+
+    suara = {
+        ['ledak']=love.audio.newSource('aset/ledakan.wav','static'),
+        ['bgmusic']=love.audio.newSource('aset/backgroundmusic.ogg','static')
+    }
 
     push:setupScreen(VIRT_WIDTH,VIRT_HEIGHT,WINDOW_WIDTH,WINDOW_HEIGHT,{
         fullscreen = false,    
