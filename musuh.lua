@@ -10,8 +10,8 @@ function Musuh:init()
     self.width = self.image:getWidth()
     self.height = self.image:getHeight()
 
-    self.x = VIRT_WIDTH / 2 + 100
-    self.y = VIRT_HEIGHT/2
+    self.x = VIRT_WIDTH - self.width
+    self.y = math.random (20,VIRT_HEIGHT - 20)
     -- dx = delta x, atau selisih x
     self.dx = 1
 end

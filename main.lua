@@ -6,6 +6,13 @@ Class = require 'class'
 require 'Pesawat'
 require 'Musuh'
 
+-- spawn / musuh nongol
+spawntimer = 1
+spawncounter = 0
+
+--array atau table
+arrayMusuh = {}
+
 --ukuran resolusi layar komputer aslinya
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
@@ -21,9 +28,9 @@ KECEPATAN = 10
 function love.load()
 
     math.randomseed(os.time())
-    
+
     pesawatku = Pesawat()
-    musuhku = Musuh()
+    --musuhku = Musuh()
 
     push:setupScreen(VIRT_WIDTH,VIRT_HEIGHT,WINDOW_WIDTH,WINDOW_HEIGHT,{
         fullscreen = false,    
@@ -45,6 +52,7 @@ function love.keypressed(tombol)
 
 end
 
+--selalu dipangil berulang
 function love.update(dt)
     if love.keyboard.isDown('up') then
         pesawatku.y = pesawatku.y - KECEPATAN
@@ -56,9 +64,16 @@ function love.update(dt)
         pesawatku.x = pesawatku.x - KECEPATAN
     end
 
+    spawncounter = spawncounter + dt
+    if spawncounter > spawntimer then
+        table.insert(arrayMusuh,Musuh())
+        spawncounter = 0
+    end
 
     pesawatku:update(dt)
-    musuhku:update(dt)
+    for k, musuhku in pairs (arrayMusuh) do
+        musuhku:update(dt)
+    end
 end
 
 
@@ -71,7 +86,11 @@ function love.draw()
 -- tampilkan teks
     tampilkantext()
     pesawatku:render()
-    musuhku:render()
+
+    for k, musuhku in pairs (arrayMusuh) do
+        musuhku:render()
+    end
+
     push:apply('end')
 
 end
