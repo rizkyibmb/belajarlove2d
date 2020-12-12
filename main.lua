@@ -20,6 +20,8 @@ KECEPATAN = 10
 ]]
 function love.load()
 
+    math.randomseed(os.time())
+    
     pesawatku = Pesawat()
     musuhku = Musuh()
 
@@ -54,8 +56,9 @@ function love.update(dt)
         pesawatku.x = pesawatku.x - KECEPATAN
     end
 
-    pesawatku:update(dt)
 
+    pesawatku:update(dt)
+    musuhku:update(dt)
 end
 
 

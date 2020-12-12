@@ -1,4 +1,4 @@
-
+KECEPATANMUSUH = 20
 
 --objek musuh
 Musuh = Class{}
@@ -12,25 +12,24 @@ function Musuh:init()
 
     self.x = VIRT_WIDTH / 2 + 100
     self.y = VIRT_HEIGHT/2
-
+    -- dx = delta x, atau selisih x
+    self.dx = 1
 end
 
 function Musuh:update(dt)
-    if self.y < 0 then
-        self.y = 0
-    end
     if self.x < 0 then
         self.x = 0
+        -- hilang
     end
-    if (self.x + self.width) >= VIRT_WIDTH then
-        self.x = VIRT_WIDTH - self.width
-    end
-    if (self.y+self.height) >= VIRT_HEIGHT then
-        self.y= VIRT_HEIGHT - self.height
-    end
+    
+    self.dx = self.dx + dt * math.random(0,KECEPATANMUSUH)
+    self.x = self.x - self.dx
+
     
 end
 
 function Musuh:render()
-    love.graphics.draw(self.image,self.x , self.y )
+    if self.x > 0 then
+        love.graphics.draw(self.image,self.x , self.y )
+    end
 end
