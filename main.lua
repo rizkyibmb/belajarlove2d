@@ -108,7 +108,7 @@ function love.draw()
 
 end
 
-
+ 
 function tampilkantext()
     love.graphics.setColor(0,230,0,255)
     love.graphics.print('Skor : ' .. tostring(skor), 20, 10) 

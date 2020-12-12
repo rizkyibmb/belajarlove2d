@@ -42,6 +42,7 @@ function Musuh:tabrakan(lawan)
     end
 end
 
+  
 function Musuh:render()
     if self.x > 0 then
         if self.mati==false then
